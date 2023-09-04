@@ -17,5 +17,9 @@ FactoryBot.define do
     trait :with_gender do
       gender { Demographic::GENDERS.sample }
     end
+
+    trait :limit_one do
+      number_available { 1 }
+    end
   end
 end

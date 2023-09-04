@@ -11,6 +11,8 @@ class User < ApplicationRecord
 
   has_secure_password
 
+  has_many :activations, dependent: :destroy
+
   def age
     (Time.zone.today - born_on).days.in_years
   end

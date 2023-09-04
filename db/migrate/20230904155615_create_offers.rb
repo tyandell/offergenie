@@ -9,6 +9,7 @@ class CreateOffers < ActiveRecord::Migration[7.0]
       t.string :keywords
       t.string :age_range
       t.string :gender
+      t.integer :number_available
 
       t.timestamps
     end

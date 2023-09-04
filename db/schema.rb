@@ -10,9 +10,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_09_04_155615) do
+ActiveRecord::Schema[7.0].define(version: 2023_09_04_173828) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "activations", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "offer_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["offer_id"], name: "index_activations_on_offer_id"
+    t.index ["user_id", "offer_id"], name: "index_activations_on_user_id_and_offer_id", unique: true
+    t.index ["user_id"], name: "index_activations_on_user_id"
+  end
 
   create_table "merchants", force: :cascade do |t|
     t.string "name", null: false
@@ -27,6 +37,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_04_155615) do
     t.string "keywords"
     t.string "age_range"
     t.string "gender"
+    t.integer "number_available"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["merchant_id"], name: "index_offers_on_merchant_id"
@@ -44,5 +55,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_04_155615) do
     t.index ["username"], name: "index_users_on_username", unique: true
   end
 
+  add_foreign_key "activations", "offers"
+  add_foreign_key "activations", "users"
   add_foreign_key "offers", "merchants"
 end
