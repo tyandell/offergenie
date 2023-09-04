@@ -7,14 +7,7 @@ class User < ApplicationRecord
   validates :first_name, :last_name, presence: true
   validates :born_on, presence: true
 
-  GENDERS = [
-    MALE = "male",
-    FEMALE = "female",
-    NONBINARY = "nonbinary",
-    PREFER_NOT_TO_SAY_GENDER = "prefer_not_to_say_gender"
-  ].freeze
-
-  validates :gender, inclusion: GENDERS
+  validates :gender, inclusion: Demographic::GENDERS
 
   has_secure_password
 
@@ -22,7 +15,7 @@ class User < ApplicationRecord
     (Time.zone.today - born_on).days.in_years
   end
 
-  GENDERS.each do |gender|
+  Demographic::GENDERS.each do |gender|
     define_method "#{gender}?" do
       self.gender == gender
     end
