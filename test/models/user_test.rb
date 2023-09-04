@@ -25,4 +25,11 @@ class UserTest < ActiveSupport::TestCase
     assert FactoryBot.build(:user, gender: "nonbinary").nonbinary?
     assert FactoryBot.build(:user, gender: "prefer_not_to_say_gender").prefer_not_to_say_gender?
   end
+
+  test "login" do
+    user = FactoryBot.create(:user)
+    assert_nil User.login("xxx", "xxx")
+    assert_nil User.login(user.username, "xxx")
+    assert_equal user, User.login(user.username, user.password)
+  end
 end

@@ -22,4 +22,12 @@ class User < ApplicationRecord
       self.gender == gender
     end
   end
+
+  def self.login(username, password)
+    user = find_by(username:)
+    return nil unless user
+    return nil unless user.authenticate(password)
+
+    user
+  end
 end

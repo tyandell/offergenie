@@ -21,8 +21,13 @@
           <a href="#" class="text-sm font-semibold leading-6 text-gray-900">Company</a>
         </div>
 
-        <div class="flex flex-1 justify-end">
-          <a href="#" class="text-sm font-semibold leading-6 text-gray-900">Sign in</a>
+        <div class="flex flex-1 justify-end space-x-4">
+          <% unless current_user %>
+            <%= link_to("Sign in", login_path, class: "text-sm font-semibold leading-6 text-gray-900") %>
+          <% else %>
+            <span class="text-sm leading-6 text-gray-600">Welcome back, <%= current_user.first_name %></span>
+            <%= link_to("Sign out", logout_path, class: "text-sm font-semibold leading-6 text-gray-900", data: { "turbo-method": :post }) %>
+          <% end %>
         </div>
       </nav>
     </header>
