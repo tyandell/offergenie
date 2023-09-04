@@ -29,3 +29,7 @@
     </div>
   </div>
 <% end %>
+
+<% content_for :footer do %>
+  <p class="text-sm text-gray-500">Not a member? <%= link_to("Sign up", new_user_path, class: "font-semibold leading-6 text-sky-600 hover:text-sky-500") %></p>
+<% end %>

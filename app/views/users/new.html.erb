@@ -60,3 +60,7 @@
     </div>
   </div>
 <% end %>
+
+<% content_for :footer do %>
+  <p class="text-sm text-gray-500">Already signed up? <%= link_to("Sign in", login_path, class: "font-semibold leading-6 text-sky-600 hover:text-sky-500") %></p>
+<% end %>
