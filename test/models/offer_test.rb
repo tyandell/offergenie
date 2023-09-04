@@ -36,4 +36,18 @@ class OfferTest < ActiveSupport::TestCase
     FactoryBot.create(:activation, offer:)
     assert_not offer.available?
   end
+
+  test "activate" do
+    offer = FactoryBot.create(:offer, :limit_one)
+
+    user1 = FactoryBot.create(:user)
+    assert_difference "offer.activations.count" do
+      offer.activate! user1
+    end
+
+    user2 = FactoryBot.create(:user)
+    assert_raises Offer::ActivationError do
+      offer.activate! user2
+    end
+  end
 end

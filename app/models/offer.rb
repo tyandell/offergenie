@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class Offer < ApplicationRecord
+  include Lockable
+
   belongs_to :merchant
 
   validates :title, presence: true, length: (3..100)
@@ -23,5 +25,16 @@ class Offer < ApplicationRecord
     return true unless number_available
 
     activations.count < number_available
+  end
+
+  class ActivationError < StandardError
+  end
+
+  def activate!(user)
+    with_advisory_lock do
+      raise ActivationError, "Offer not available" unless available?
+
+      activations.create!(user:)
+    end
   end
 end
