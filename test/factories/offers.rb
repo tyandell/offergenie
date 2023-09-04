@@ -3,11 +3,11 @@
 FactoryBot.define do
   factory :offer do
     merchant
-    title { Faker::Hipster.sentence }
-    description { Faker::Hipster.paragraph }
+    title { Faker::Hipster.sentence[...100] }
+    description { Faker::Hipster.paragraph[...5000] }
 
     trait :with_keywords do
-      keywords { Faker::Hipster.words.join(" ") }
+      keywords { Faker::Hipster.words.join(" ")[...1000] }
     end
 
     trait :with_age_range do
