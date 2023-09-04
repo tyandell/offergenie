@@ -81,4 +81,5 @@ group :test do
   gem "simplecov", "~> 0.22.0", require: false
 end
 
+gem "classes", "~> 0.1.0"
 gem "faker", "~> 3.2"

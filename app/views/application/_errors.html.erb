@@ -1,0 +1,12 @@
+<% if model.errors.any? %>
+  <%= render("error_alert", class: local_assigns[:class]) do %>
+    <h3 class="text-sm font-bold text-red-800">Oh no!</h3>
+    <div class="mt-2 text-sm text-red-700">
+      <ul class="space-y-1">
+        <% model.errors.full_messages.each do |message| %>
+          <li><%= message %>!</li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+<% end %>
