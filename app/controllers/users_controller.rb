@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class UsersController < ApplicationController
-  layout "auth"
+  layout "card"
 
   def new
     @user = User.new

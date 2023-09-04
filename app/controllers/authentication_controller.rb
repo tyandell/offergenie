@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class AuthenticationController < ApplicationController
-  layout "auth"
+  layout "card"
 
   def login
     return if request.get?
