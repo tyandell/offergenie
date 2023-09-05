@@ -82,5 +82,7 @@ group :test do
 end
 
 gem "classes", "~> 0.1.0"
-gem "faker", "~> 3.2"
 gem "pagy", "~> 6.0"
+
+gem "faker", "~> 3.2"
+gem "ruby-openai", "~> 5.1"
