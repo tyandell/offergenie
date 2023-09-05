@@ -4,6 +4,6 @@ class OffersController < ApplicationController
   before_action :require_user
 
   def index
-    @offers = Offer.all
+    @pagy, @offers = pagy(Offer.all, items: 12)
   end
 end

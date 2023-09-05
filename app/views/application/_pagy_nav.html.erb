@@ -1,0 +1,29 @@
+<nav class="flex items-center justify-between border-t border-gray-200">
+  <div class="-mt-px flex w-0 flex-1">
+    <% if pagy.prev %>
+      <%= link_to("Previous", pagy_url_for(pagy, pagy.prev), class: "inline-flex items-center border-t-2 border-transparent pr-1 pt-4 text-gray-500 hover:border-gray-300 hover:text-gray-700") %>
+    <% else %>
+      <span class="inline-flex items-center border-t-2 border-transparent pr-1 pt-4 text-gray-400">Previous</span>
+    <% end %>
+  </div>
+
+  <div class="hidden md:-mt-px md:flex">
+    <% pagy.series.each do |item| %>
+      <% if item.is_a?(Integer) %>
+        <%= link_to(pagy.label_for(item), pagy_url_for(pagy, item), class: "inline-flex items-center border-t-2 border-transparent px-4 pt-4 text-gray-500 hover:border-gray-300 hover:text-gray-700") %>
+      <% elsif item.is_a?(String) %>
+        <span class="inline-flex items-center border-t-2 border-gray-500 px-4 pt-4 text-gray-600"><%= pagy.label_for(item) %></span>
+      <% elsif item == :gap %>
+        <span class="inline-flex items-center border-t-2 border-transparent px-4 pt-4 text-gray-500">…</span>
+      <% end %>
+    <% end %>
+  </div>
+
+  <div class="-mt-px flex w-0 flex-1 justify-end">
+    <% if pagy.next %>
+      <%= link_to("Next", pagy_url_for(pagy, pagy.next), class: "inline-flex items-center border-t-2 border-transparent pl-1 pt-4 text-gray-500 hover:border-gray-300 hover:text-gray-700") %>
+    <% else %>
+      <span class="inline-flex items-center border-t-2 border-transparent pl-1 pt-4 text-gray-400">Next</span>
+    <% end %>
+  </div>
+</nav>

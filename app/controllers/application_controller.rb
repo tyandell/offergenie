@@ -2,6 +2,7 @@
 
 class ApplicationController < ActionController::Base
   include SessionAuthentication
+  include Pagy::Backend
 
   helper_method :current_user
 
