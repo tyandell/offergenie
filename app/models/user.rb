@@ -23,6 +23,10 @@ class User < ApplicationRecord
     end
   end
 
+  def demographic
+    Demographic.new(age_range: Demographic.age_range_for_age(age), gender:)
+  end
+
   def self.login(username, password)
     user = find_by(username:)
     return nil unless user

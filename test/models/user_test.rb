@@ -26,6 +26,10 @@ class UserTest < ActiveSupport::TestCase
     assert FactoryBot.build(:user, gender: "prefer_not_to_say_gender").prefer_not_to_say_gender?
   end
 
+  test "demographic" do
+    assert FactoryBot.build(:user).demographic.valid?
+  end
+
   test "login" do
     user = FactoryBot.create(:user)
     assert_nil User.login("xxx", "xxx")

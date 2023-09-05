@@ -26,6 +26,9 @@ Metrics:
   Exclude:
     - db/migrate/*.rb
 
+Style/AccessorGrouping:
+  Enabled: false
+
 Style/ClassAndModuleChildren:
   Enabled: false
 
@@ -33,6 +36,9 @@ Style/Documentation:
   Enabled: false
 
 Style/EmptyMethod:
+  Enabled: false
+
+Style/Lambda:
   Enabled: false
 
 Style/StringLiterals:

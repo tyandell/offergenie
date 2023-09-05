@@ -10,8 +10,9 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_09_04_173828) do
+ActiveRecord::Schema[7.0].define(version: 2023_09_05_053812) do
   # These are extensions that must be enabled in order to support this database
+  enable_extension "pg_trgm"
   enable_extension "plpgsql"
 
   create_table "activations", force: :cascade do |t|
@@ -40,7 +41,16 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_04_173828) do
     t.integer "number_available"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["keywords"], name: "index_offers_on_keywords", opclass: :gist_trgm_ops, using: :gist
     t.index ["merchant_id"], name: "index_offers_on_merchant_id"
+  end
+
+  create_table "ratings", force: :cascade do |t|
+    t.string "demographic_key", null: false
+    t.string "keyword", null: false
+    t.integer "value", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "users", force: :cascade do |t|
