@@ -4,7 +4,48 @@
     <%= render("head") %>
   </head>
 
-  <body class="h-full">
-    <%= yield %>
+  <body class="flex h-full flex-col bg-gray-50">
+    <header>
+      <nav>
+        <div class="bg-gray-900">
+          <div class="mx-auto flex h-12 max-w-7xl items-center justify-end px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center space-x-6">
+              <%= render("user_nav_links", link_class: "text-sm font-medium text-white hover:text-gray-100") %>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-white shadow-sm">
+          <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+            <div class="flex h-16 items-center justify-between">
+              <div class="hidden lg:flex lg:flex-1 lg:items-center">
+                <%= link_to(offers_path) do %>
+                  <span class="sr-only">OfferGenie</span>
+                  <%= render("logo", height_class: "h-8") %>
+                <% end %>
+              </div>
+
+              <div class="flex flex-1 items-center justify-end space-x-8">
+                <%= render("nav_links") %>
+              </div>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <div class="flex-1">
+      <main class="mx-auto max-w-3xl px-4 sm:px-6 lg:max-w-7xl lg:px-8">
+        <%= yield %>
+      </main>
+    </div>
+
+    <footer class="mt-24 border-t border-gray-200 bg-white">
+      <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div class="border-t border-gray-100 py-10 text-center">
+          <p class="text-sm text-gray-500">&copy; 2021 OfferGenie</p>
+        </div>
+      </div>
+    </footer>
   </body>
 </html>

@@ -12,7 +12,7 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
     assert_difference "User.count" do
       post users_url, params: { user: FactoryBot.attributes_for(:user) }
     end
-    assert_response :redirect
+    assert_redirected_to offers_path
   end
 
   test "create with invalid params" do

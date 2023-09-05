@@ -7,4 +7,6 @@ Rails.application.routes.draw do
 
   match "login", via: [:get, :post], to: "authentication#login"
   post "logout", to: "authentication#logout"
+
+  resources :offers, only: [:index]
 end

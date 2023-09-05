@@ -10,7 +10,7 @@ class AuthenticationController < ApplicationController
     if user
       self.current_user = user
 
-      redirect_to root_path
+      redirect_to offers_path
     else
       @error = true
       render status: :unprocessable_entity

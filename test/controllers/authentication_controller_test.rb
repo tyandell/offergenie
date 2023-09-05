@@ -12,7 +12,7 @@ class AuthenticationControllerTest < ActionDispatch::IntegrationTest
 
     user = FactoryBot.create(:user)
     post login_url, params: { username: user.username, password: user.password }
-    assert_response :redirect
+    assert_redirected_to offers_path
   end
 
   test "logout" do

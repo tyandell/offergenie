@@ -1,0 +1,14 @@
+<div class="py-24 text-center">
+  <h1 class="text-4xl font-bold tracking-tight text-gray-900">Your Personalized Offers</h1>
+  <p class="mx-auto mt-4 max-w-3xl text-base text-gray-500">Deals handpicked, just for you.</p>
+</div>
+
+<section class="mt-8">
+  <% if @offers.any? %>
+    <div class="grid grid-cols-1 items-start gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-3 xl:gap-x-8">
+      <%= render(@offers) %>
+    </div>
+  <% else %>
+    <%= render("no_offers") %>
+  <% end %>
+</section>

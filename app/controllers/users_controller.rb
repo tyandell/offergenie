@@ -13,7 +13,7 @@ class UsersController < ApplicationController
     if @user.save
       self.current_user = @user
 
-      redirect_to root_path # TODO: Replace this with the offers page.
+      redirect_to offers_path
     else
       render :new, status: :unprocessable_entity
     end

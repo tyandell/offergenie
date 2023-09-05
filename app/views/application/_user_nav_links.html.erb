@@ -1,0 +1,2 @@
+<%= link_to("Welcome back, #{current_user.first_name}", offers_path, class: link_class) %>
+<%= link_to("Sign out", logout_path, class: link_class, data: { "turbo-method": :post }) %>
