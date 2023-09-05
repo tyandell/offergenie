@@ -6,6 +6,8 @@ class Activation < ApplicationRecord
 
   validates :offer, uniqueness: { scope: :user }
 
+  validates :coupon_code, presence: true
+
   def self.scores
     # TODO: Implement this.
     {}

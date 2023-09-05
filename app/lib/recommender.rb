@@ -23,6 +23,7 @@ class Recommender
 
   def recommended_items(entity)
     return [] if scores.empty?
+    return [] unless scores[entity]
 
     (scores[entity].to_a + Pearson.recommendations(scores, entity))
       .reject { |rec| rec[1] <= MINIMUM_SCORE }

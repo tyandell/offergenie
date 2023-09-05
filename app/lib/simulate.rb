@@ -69,6 +69,12 @@ module Simulate
 
         attributes[:number_available] = 10**rand(1..5) if rand > 0.5
 
+        if rand > 0.5
+          attributes[:activation_code] = Faker::Internet.uuid
+        else
+          attributes[:coupon_code] = Faker::Commerce.promotion_code
+        end
+
         Offer.create! attributes
       end
     end

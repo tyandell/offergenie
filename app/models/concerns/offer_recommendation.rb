@@ -10,7 +10,7 @@ module OfferRecommendation
 
   included do
     scope :recommended_for, ->(user) {
-      select("*", recommendation_score_select_sql(user))
+      select("offers.*", recommendation_score_select_sql(user))
         .order(recommendation_score: :desc)
     }
   end
@@ -24,7 +24,6 @@ module OfferRecommendation
       recommender.recommended_items(user.demographic.key)
     end
 
-    # rubocop:disable Metrics/MethodLength
     def recommendation_score_select_sql(user)
       keywords = recommended_keywords_for(user).join(" ")
 
@@ -37,10 +36,9 @@ module OfferRecommendation
         (
           word_similarity(?, keywords) +
           case when age_range = ? and gender = ? then #{DEMOGRAPHIC_BOOST} else 0 end +
-          case when created_at > ? then #{NEW_BOOST} else 0 end
+          case when offers.created_at > ? then #{NEW_BOOST} else 0 end
         ) as recommendation_score
       SQL
     end
-    # rubocop:enable Metrics/MethodLength
   end
 end

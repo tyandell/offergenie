@@ -18,11 +18,13 @@
         <div class="bg-white shadow-sm">
           <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <div class="flex h-16 items-center justify-between">
-              <div class="hidden lg:flex lg:flex-1 lg:items-center">
-                <%= link_to(offers_path) do %>
+              <div class="hidden space-x-8 lg:flex lg:flex-1 lg:items-center">
+                <div>
                   <span class="sr-only">OfferGenie</span>
                   <%= render("logo", height_class: "h-8") %>
-                <% end %>
+                </div>
+
+                <%= link_to("Offers", offers_path, class: "text-sm font-medium text-gray-700 hover:text-gray-800") %>
               </div>
 
               <div class="flex flex-1 items-center justify-end space-x-8">

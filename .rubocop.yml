@@ -23,9 +23,7 @@ Layout/LineLength:
   Enabled: false
 
 Metrics:
-  Exclude:
-    - db/migrate/*.rb
-    - app/lib/simulate.rb
+  Enabled: false
 
 Style/AccessorGrouping:
   Enabled: false

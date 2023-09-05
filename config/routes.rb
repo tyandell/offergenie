@@ -8,5 +8,8 @@ Rails.application.routes.draw do
   match "login", via: [:get, :post], to: "authentication#login"
   post "logout", to: "authentication#logout"
 
-  resources :offers, only: [:index]
+  resources :offers, only: [:index] do
+    post "activate", on: :member
+  end
+  resources :activations, only: [:show]
 end

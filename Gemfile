@@ -79,6 +79,7 @@ group :test do
   gem "webdrivers"
 
   gem "simplecov", "~> 0.22.0", require: false
+  gem "webmock", "~> 3.19", require: false
 end
 
 gem "classes", "~> 0.1.0"
@@ -88,3 +89,5 @@ gem "faker", "~> 3.2"
 gem "ruby-openai", "~> 5.1"
 
 gem "pearson", "~> 1.1"
+
+gem "faraday", "~> 2.7"

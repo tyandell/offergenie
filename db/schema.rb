@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_09_05_053812) do
+ActiveRecord::Schema[7.0].define(version: 2023_09_05_160544) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_trgm"
   enable_extension "plpgsql"
@@ -18,6 +18,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_05_053812) do
   create_table "activations", force: :cascade do |t|
     t.bigint "user_id", null: false
     t.bigint "offer_id", null: false
+    t.string "coupon_code", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["offer_id"], name: "index_activations_on_offer_id"
@@ -29,6 +30,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_05_053812) do
     t.string "name", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "api_url"
+    t.string "api_key"
   end
 
   create_table "offers", force: :cascade do |t|
@@ -41,6 +44,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_05_053812) do
     t.integer "number_available"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "activation_code"
+    t.string "coupon_code"
     t.index ["keywords"], name: "index_offers_on_keywords", opclass: :gist_trgm_ops, using: :gist
     t.index ["merchant_id"], name: "index_offers_on_merchant_id"
   end
