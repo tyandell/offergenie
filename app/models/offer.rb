@@ -11,4 +11,8 @@ class Offer < ApplicationRecord
 
   include OfferActivation
   include OfferRecommendation
+
+  def new_boost?
+    created_at >= NEW_BOOST_PERIOD.ago
+  end
 end

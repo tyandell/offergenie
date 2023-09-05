@@ -1,9 +1,17 @@
 <div class="bg-white shadow rounded-lg">
   <div class="px-4 py-5 sm:p-6">
+    <% if offer.new_boost? %>
+      <div class="-mx-1 mb-2 flex space-x-2">
+        <span class="inline-flex items-center rounded-full bg-green-100 px-2 py-1 text-xs font-medium text-green-700">New!</span>
+      </div>
+    <% end %>
+
     <h3 class="text-base font-semibold leading-6 text-gray-900"><%= offer.title %></h3>
+
     <div class="mt-2 max-w-xl text-sm text-gray-500">
       <%= simple_format(offer.description) %>
     </div>
+
     <div class="mt-5 flex justify-end">
       <button type="button" class="inline-flex items-center rounded-md bg-green-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-green-500">
         Activate offer
