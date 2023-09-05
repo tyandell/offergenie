@@ -3,6 +3,9 @@
 module OfferRecommendation
   extend ActiveSupport::Concern
 
+  DEMOGRAPHIC_BOOST = 10
+
+  NEW_BOOST = 10
   NEW_BOOST_PERIOD = 15.minutes
 
   included do
@@ -21,15 +24,23 @@ module OfferRecommendation
       recommender.recommended_items(user.demographic.key)
     end
 
+    # rubocop:disable Metrics/MethodLength
     def recommendation_score_select_sql(user)
       keywords = recommended_keywords_for(user).join(" ")
 
-      sanitize_sql([<<~SQL.squish, keywords, NEW_BOOST_PERIOD.ago])
+      params = [
+        keywords,
+        user.demographic.age_range, user.demographic.gender,
+        NEW_BOOST_PERIOD.ago
+      ]
+      sanitize_sql([<<~SQL.squish, *params])
         (
           word_similarity(?, keywords) +
-          case when created_at > ? then 100 else 0 end
+          case when age_range = ? and gender = ? then #{DEMOGRAPHIC_BOOST} else 0 end +
+          case when created_at > ? then #{NEW_BOOST} else 0 end
         ) as recommendation_score
       SQL
     end
+    # rubocop:enable Metrics/MethodLength
   end
 end
