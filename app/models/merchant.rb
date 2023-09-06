@@ -1,5 +1,9 @@
 # frozen_string_literal: true
 
+# A merchant listing offers on OfferGenie.
+#
+# The main feature of this model is to process offer activations, returning a
+# coupon code that will be given back to the user after activating the offer.
 class Merchant < ApplicationRecord
   validates :name, presence: true
 

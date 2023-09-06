@@ -1,5 +1,9 @@
 # frozen_string_literal: true
 
+# An OfferGenie end user.
+#
+# Along with authentication, this mainly provides a {demographic} that be used
+# when matching offers to users.
 class User < ApplicationRecord
   include ActiveModel::SecurePassword
 
@@ -23,10 +27,19 @@ class User < ApplicationRecord
     end
   end
 
+  # Returns the matching {Demographic} for the user.
+  #
+  # @return [Demographic]
   def demographic
     Demographic.new(age_range: Demographic.age_range_for_age(age), gender:)
   end
 
+  # Handles authentication.
+  #
+  # @param username [String]
+  # @param password [String]
+  #
+  # @return [User, nil] If the login was correct, the user, otherwise +nil+
   def self.login(username, password)
     user = find_by(username:)
     return nil unless user

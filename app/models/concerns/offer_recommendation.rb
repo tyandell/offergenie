@@ -1,5 +1,33 @@
 # frozen_string_literal: true
 
+# Handles the offer recommendation algorithm.
+#
+# == The Algorithm
+#
+# There are three factors that combine to create a recommendation score for
+# each offer. The offers are sorted by this score, with higher scores being
+# shown to the user first.
+#
+# The primary factor used in recommendation is to compare how similar an
+# offer's keywords are to the keywords that are recommended for the user's
+# demographic. The best keywords for demographic are determined by
+# {Recommender} which uses {Activation.scores} and {Rating.scores} as input.
+# This is implemented in Postgres using a GiST index and +word_similarity+.
+#
+# Next, offer demographics are taken into account. If a merchant chose to
+# specify a demographic (which would normally limit its reach), this gives it a
+# boost for users in the same demographic.
+#
+# Finally, new offers are boosted. This allows for new kinds of offers with
+# unrecognized keywords to be seen by users. They also get a "new" tag based on
+# {Offer#new_boost?}.
+#
+# == Scopes
+#
+# +recommended_for+ --- Finds the offers recommended for a user
+#
+# @example Using +recommended_for+
+#     Offer.recommended_for(User.first).first(5).pluck(:title)
 module OfferRecommendation
   extend ActiveSupport::Concern
 
