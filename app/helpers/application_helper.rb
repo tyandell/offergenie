@@ -4,6 +4,6 @@ module ApplicationHelper
   include Pagy::Frontend
 
   def debug?
-    Rails.env.development? && params[:debug].present?
+    params[:debug].present?
   end
 end
