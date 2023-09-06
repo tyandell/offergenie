@@ -2,6 +2,8 @@
 
 Magic deals tailored just for you with OfferGenie!
 
+https://offergenie.fly.dev
+
 ## Setup
 
 Clone the repo and run `bin/setup`.

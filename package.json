@@ -22,5 +22,6 @@
     "build:css": "tailwindcss -i ./app/assets/stylesheets/application.tailwind.css -o ./app/assets/builds/application.css --minify",
     "lint": "eslint --ignore-path .gitignore ."
   },
-  "private": "true"
+  "private": "true",
+  "packageManager": "yarn@1.22.19"
 }
