@@ -4,6 +4,8 @@ Magic deals tailored just for you with OfferGenie!
 
 https://offergenie.fly.dev
 
+https://offergenie-docs.netlify.app
+
 ## Setup
 
 Clone the repo and run `bin/setup`.
